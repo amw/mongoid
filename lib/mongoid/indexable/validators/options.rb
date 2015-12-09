@@ -7,27 +7,11 @@ module Mongoid
       module Options
         extend self
 
-        VALID_OPTIONS = [
-          :background,
-          :database,
-          :default_language,
-          :language_override,
-          :drop_dups,
-          :name,
-          :sparse,
-          :unique,
-          :max,
-          :min,
-          :bits,
-          :bucket_size,
-          :expire_after_seconds,
-          :weights,
-          :storage_engine,
-          :key,
-          :sphere_version,
-          :text_version,
-          :version
-        ]
+        VALID_OPTIONS =
+          Mongo::Index::View::OPTIONS.keys -
+          Mongoid::Indexable::Specification::MAPPINGS.values +
+          Mongoid::Indexable::Specification::MAPPINGS.keys +
+          [:database, :drop_dups]
 
         VALID_TYPES = [
           1,
